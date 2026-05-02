@@ -224,16 +224,8 @@ if submitted:
                 st.markdown(f"""
                 <div style="margin-top: 35px;">
                     <p style="color:#166534; font-weight:600; font-size:1.1rem;">
-                        Tolong Hubungi Guru Anda!
+                        Hubungi Uztad Zohri (087765931993)!
                     </p>
-                    <div class="btn-container">
-                        <a href="{link_pengumuman}" target="_blank" class="btn-download">
-                            📥 Pengumuman (PDF)
-                        </a>
-                        <a href="{link_skl}" target="_blank" class="btn-download btn-skl">
-                            📄 Unduh SKL (PDF)
-                        </a>
-                    </div>
                 </div>
             """, unsafe_allow_html=True)
                 st.balloons()
