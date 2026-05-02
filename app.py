@@ -1,15 +1,27 @@
 import streamlit as st
 import pandas as pd
+from PIL import Image
+import os
+
+# Mengambil path folder saat ini
+current_dir = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+image_path = os.path.join(current_dir, "images.jpg")
+
+# Load gambar logo sekali
+try:
+    logo = Image.open(image_path)
+except FileNotFoundError:
+    st.warning("Foto logo tidak ditemukan. Pastikan file bernama 'images.jpg' ada di folder yang sama.")
+    logo = None
 
 # ─────────────────────────────────────────────
 # PAGE CONFIG
 # ─────────────────────────────────────────────
 st.set_page_config(
     page_title="Kelulusan SMK Plus Nurul Hakim",
-    page_icon="🎓",
+    page_icon=logo,
     layout="centered",
 )
-
 # ─────────────────────────────────────────────
 # LOAD DATA
 # ─────────────────────────────────────────────
@@ -44,14 +56,6 @@ st.markdown("""
         background-color: #f8fafc !important;
     }
     
-    .header-box {
-        text-align: center;
-        padding: 50px 20px 40px;
-        background: linear-gradient(135deg, #1e40af, #3b82f6);
-        border-radius: 0 0 30px 30px;
-        margin-bottom: 30px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-    }
 
     .result-card {
         background-color: #ffffff;
@@ -121,17 +125,32 @@ st.markdown("""
 # ─────────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────────
-st.markdown("""
-<div class="header-box">
-    <div style="font-size: 4.2rem; margin-bottom: 12px;">🎓</div>
-    <div style="font-size: 2.1rem; font-weight: 800; margin-bottom: 8px;">
-        SMK PLUS NURUL HAKIM
+
+with st.container():
+    
+    col1, col2, col3 = st.columns([1, 0.6, 1]) 
+    
+    with col2:
+        try:
+            current_dir = os.path.dirname(__file__) if "__file__" in locals() else os.getcwd()
+            image_path = os.path.join(current_dir, "images.jpg")
+            img = Image.open(image_path)
+            
+            st.image(img, use_container_width=True)
+        except Exception:
+            st.markdown('<div style="font-size: 4.2rem; margin-bottom: 12px;">🎓</div>', unsafe_allow_html=True)
+
+    # Teks Header (Tetap Putih karena di dalam Box Biru)
+    st.markdown("""
+    <div style="text-align: center; width: 100%;">
+        <div style="font-size: 2.1rem; font-weight: 800; margin-top: 15px; color: white !important;">
+            SMK PLUS NURUL HAKIM
+        </div>
+        <div style="font-size: 1rem; opacity: 0.95; letter-spacing: 2px; text-transform: uppercase; color: white !important; margin-top: 5px;">
+            PENGUMUMAN KELULUSAN TAHUN PELAJARAN 2024/2025
+        </div>
     </div>
-    <div style="font-size: 1rem; opacity: 0.95; letter-spacing: 2px; text-transform: uppercase;">
-        PENGUMUMAN KELULUSAN TAHUN PELAJARAN 2024/2025
-    </div>
-</div>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
 # ─────────────────────────────────────────────
 # SEARCH FORM
@@ -180,7 +199,7 @@ if submitted:
                 <p style="color:#475569; font-size: 1.05rem; margin-bottom: 30px;">{row['JURUSAN']}</p>
                 
                 
-                {'✅ DINYATAKAN LULUS' if is_lulus else '❌ TIDAK LULUS'}
+                {'✅ DINYATAKAN LULUS' if is_lulus else '‼️ LULUS BERSYARAT'}
                 
             """, unsafe_allow_html=True)
 
@@ -200,6 +219,23 @@ if submitted:
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+                st.balloons()
+            else:
+                st.markdown(f"""
+                <div style="margin-top: 35px;">
+                    <p style="color:#166534; font-weight:600; font-size:1.1rem;">
+                        Tolong Hubungi Guru Anda!
+                    </p>
+                    <div class="btn-container">
+                        <a href="{link_pengumuman}" target="_blank" class="btn-download">
+                            📥 Pengumuman (PDF)
+                        </a>
+                        <a href="{link_skl}" target="_blank" class="btn-download btn-skl">
+                            📄 Unduh SKL (PDF)
+                        </a>
+                    </div>
+                </div>
+            """, unsafe_allow_html=True)
                 st.balloons()
             
             st.markdown("</div>", unsafe_allow_html=True)
