@@ -79,6 +79,7 @@ st.markdown("""
     }
 
     .btn-container {
+        color : white;
         display: flex;
         justify-content: center;
         gap: 15px;
@@ -88,6 +89,7 @@ st.markdown("""
 
     .btn-download {
         background-color: #1e40af;
+        color:ffffff;
         padding: 14px 24px;
         border-radius: 12px;
         font-weight: 700;
@@ -147,7 +149,7 @@ with st.container():
             SMK PLUS NURUL HAKIM
         </div>
         <div style="font-size: 1rem; opacity: 0.95; letter-spacing: 2px; text-transform: uppercase; color: white !important; margin-top: 5px;">
-            PENGUMUMAN KELULUSAN TAHUN PELAJARAN 2024/2025
+            PENGUMUMAN KELULUSAN TAHUN PELAJARAN 2025/2026
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -210,10 +212,10 @@ if submitted:
                         Selamat atas keberhasilan Anda! 🌟
                     </p>
                     <div class="btn-container">
-                        <a href="{link_pengumuman}" target="_blank" class="btn-download">
+                        <a style="color:white; text-decoration:none" href="{link_pengumuman}" target="_blank" class="btn-download">
                             📥 Pengumuman (PDF)
                         </a>
-                        <a href="{link_skl}" target="_blank" class="btn-download btn-skl">
+                        <a style="color:white; text-decoration:none" href="{link_skl}" target="_blank" class="btn-download btn-skl">
                             📄 Unduh SKL (PDF)
                         </a>
                     </div>
