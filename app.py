@@ -224,7 +224,7 @@ if submitted:
                 st.markdown(f"""
                 <div style="margin-top: 35px;">
                     <p style="color:#166534; font-weight:600; font-size:1.1rem;">
-                        Hubungi Uztad Zohri (087765931993)!
+                        Harap Segera Menghubungi Uztadz Zohri (087765931993)!
                     </p>
                 </div>
             """, unsafe_allow_html=True)
